@@ -73,7 +73,7 @@ app.post("/api/entries", function(req, res) {
       type: "solastat_status"
     },
     {
-      {$set: {"values.59": 20000}}
+      $set: {"values.59": 20000}
     },
     {
       upsert: true
