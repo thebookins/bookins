@@ -69,7 +69,7 @@ app.post("/api/entries", function(req, res) {
 
   db.collection(ENTRIES_COLLECTION).update(
     {
-      timestamp_hour: ISODate("2013-10-10T23:06:00.000Z"),
+      timestamp_hour: 123,
       type: "solastat_status"
     },
     {
