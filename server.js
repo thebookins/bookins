@@ -73,7 +73,7 @@ app.post("/api/entries", function(req, res) {
       type: "solastat_status"
     },
     {
-      $set: {"values.59": 20000}
+      $set: {"values.34": 20000}
     },
     {
       upsert: true
@@ -83,7 +83,8 @@ app.post("/api/entries", function(req, res) {
         handleError(res, err.message, "Failed to create new entry.");
       } else {
         console.log(doc);
-        res.status(201).json(doc.ops[0]);
+        res.status(201);
+//        res.status(201).json(doc.ops[0]);
       }
     }
   );
