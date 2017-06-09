@@ -85,5 +85,5 @@ app.post("/api/entries", function(req, res) {
         res.status(201).json(doc.ops[0]);
       }
     }
-  });
+  );
 });
