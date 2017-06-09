@@ -59,11 +59,19 @@ app.post("/api/entries", function(req, res) {
     handleError(res, "Invalid user input", "Must provide a timestamp.", 400);
   }
 
-  db.collection(ENTRIES_COLLECTION).insertOne(newEntry, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new entry.");
-    } else {
-      res.status(201).json(doc.ops[0]);
-    }
-  });
+  var date = new Date(timestamp);
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+
+  db.collection(ENTRIES_COLLECTION).update(
+    {
+      timestamp_hour: date,
+      type: solastat_status
+    },
+    {$set: {"values.59": 20000}}
+  );
 });
