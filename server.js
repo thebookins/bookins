@@ -53,4 +53,17 @@ app.get("/api/entries", function(req, res) {
 });
 
 app.post("/api/entries", function(req, res) {
+  var newEntry = req.body;
+
+  if (!req.body.timestamp) {
+    handleError(res, "Invalid user input", "Must provide a timestamp.", 400);
+  }
+
+  db.collection(ENTRIES_COLLECTION).insertOne(newEntry, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new entry.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
 });
