@@ -44,11 +44,12 @@ function handleError(res, reason, message, code) {
 
 app.get("/api/entries", function(req, res) {
   db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
-  if (err) {
-    handleError(res, err.message, "Failed to get entries.");
-  } else {
-    res.status(200).json(docs);
-  }
+    if (err) {
+      handleError(res, err.message, "Failed to get entries.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
 });
 
 app.post("/api/entries", function(req, res) {
