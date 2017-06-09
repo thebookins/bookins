@@ -55,11 +55,11 @@ app.get("/api/entries", function(req, res) {
 app.post("/api/entries", function(req, res) {
   var newEntry = req.body;
 
-  if (!req.body.timestamp) {
+  if (!newEntry.timestamp) {
     handleError(res, "Invalid user input", "Must provide a timestamp.", 400);
   }
 
-  var date = new Date(timestamp);
+  var date = new Date(newEntry.timestamp);
   var minute = date.getMinutes();
   var second = date.getSeconds();
 
