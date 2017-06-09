@@ -30,3 +30,20 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 });
 
 // ENTRIES API ROUTES BELOW
+
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
+/*  "/api/entries"
+ *    GET: finds all entries
+ *    POST: creates a new entry
+ */
+
+app.get("/api/entries", function(req, res) {
+});
+
+app.post("/api/entries", function(req, res) {
+});
