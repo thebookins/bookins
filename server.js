@@ -72,6 +72,11 @@ app.post("/api/entries", function(req, res) {
       timestamp_hour: date,
       type: "solastat_status"
     },
-    {$set: {"values.59": 20000}}
+    {
+      $set: {"values.59": 20000}
+    },
+    {
+      upsert: true
+    }
   );
 });
