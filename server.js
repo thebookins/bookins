@@ -73,7 +73,7 @@ app.post("/api/entries", function(req, res) {
       type: "solastat_status"
     },
     {
-      $set: {"values.34": 20000}
+      $set: {[`values.${minute}.${second}`]: 20000}
     },
     {
       upsert: true
@@ -82,6 +82,7 @@ app.post("/api/entries", function(req, res) {
       if (err) {
         handleError(res, err.message, "Failed to create new entry.");
       } else {
+        // TODO: what should we return here?
         res.status(201).json("hi there");
 //        res.status(201).json(doc.ops[0]);
       }
