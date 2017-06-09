@@ -82,8 +82,7 @@ app.post("/api/entries", function(req, res) {
       if (err) {
         handleError(res, err.message, "Failed to create new entry.");
       } else {
-        console.log(doc);
-        res.status(201);
+        res.status(201).json("hi there");
 //        res.status(201).json(doc.ops[0]);
       }
     }
