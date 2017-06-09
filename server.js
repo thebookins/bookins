@@ -70,7 +70,7 @@ app.post("/api/entries", function(req, res) {
   db.collection(ENTRIES_COLLECTION).update(
     {
       timestamp_hour: date,
-      type: solastat_status
+      type: "solastat_status"
     },
     {$set: {"values.59": 20000}}
   );
