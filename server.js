@@ -69,7 +69,7 @@ app.post("/api/entries", function(req, res) {
 
   db.collection(ENTRIES_COLLECTION).update(
     {
-      timestamp_hour: 123,
+      timestamp_hour: date,
       type: "solastat_status"
     },
     {
@@ -77,6 +77,13 @@ app.post("/api/entries", function(req, res) {
     },
     {
       upsert: true
+    },
+    function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to create new entry.");
+      } else {
+        res.status(201).json(doc.ops[0]);
+      }
     }
-  );
+  });
 });
