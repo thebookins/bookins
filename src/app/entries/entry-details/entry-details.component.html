@@ -1,0 +1,27 @@
+<div *ngIf="entry" class="row">
+  <div class="col-md-12">
+    <h2 *ngIf="entry._id">Contact Details</h2>
+    <h2 *ngIf="!entry._id">New Contact</h2>
+  </div>
+</div>
+<div *ngIf="entry" class="row">
+  <form class="col-md-12">
+    <div class="form-group">
+      <label for="entry-timestamp">Time</label>
+      <input class="form-control" name="entry-timestamp" [(ngModel)]="entry.timestamp" placeholder="Time"/>
+    </div>
+    <div class="form-group">
+      <label for="entry-roof">Roof</label>
+      <input class="form-control" name="entry-roof" [(ngModel)]="entry.status.roof" placeholder=50/>
+    </div>
+    <div class="form-group">
+      <label for="entry-tank">Tank</label>
+      <input class="form-control" name="entry-tank" [(ngModel)]="entry.status.tank" placeholder=50/>
+    </div>
+    <div class="form-group">
+      <label for="entry-inlet">Inlet</label>
+      <input class="form-control" name="entry-inlet" [(ngModel)]="entry.status.inlet" placeholder=50/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!entry._id" (click)="createEntry(entry)">Create</button>
+  </form>
+</div>
