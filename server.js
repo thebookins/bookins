@@ -56,7 +56,7 @@ app.get("/api/entries", function(req, res) {
     var date = doc.timestamp_hour;
     data.push(date);
   });
-  res.status(200).json(data);
+  setTimeout(function() {res.status(200).json(data);}, 1000);  
 });
 
 app.post("/api/entries", function(req, res) {
