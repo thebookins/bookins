@@ -78,8 +78,7 @@ app.post("/api/entries", function(req, res) {
       type: "solastat_status"
     },
     {
-//      $set: {[`values.${minute}.${second}`]: newEntry.status}
-      $set: {values[minute][second]: newEntry.status}
+      $set: {[`values.${minute}.${second}`]: newEntry.status}
 //      $push: {values[minute][second]: newEntry.status}
     },
     {
