@@ -41,7 +41,7 @@ export class EntryListComponent implements OnInit {
   }
 
   selectEntry(entry: Entry) {
-    console.log('selected ' + entry.toString());
+    console.log('selected ' + entry.timestamp);
     this.selectedEntry = entry
   }
 
