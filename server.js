@@ -78,9 +78,9 @@ app.post("/api/entries", function(req, res) {
       type: "solastat_status"
     },
     {
-      $setOnInsert: { values: {'0': 0, '1': 0, '2': 0}},
-      $set: {[`values.${minute}.${second}`]: newEntry.status}
-//      $set: {values[minute][second]: newEntry.status}
+//      $set: {[`values.${minute}.${second}`]: newEntry.status}
+      $set: {values[minute][second]: newEntry.status}
+//      $push: {values[minute][second]: newEntry.status}
     },
     {
       upsert: true
