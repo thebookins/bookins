@@ -44,25 +44,26 @@ function handleError(res, reason, message, code) {
 
 app.get("/api/entries", function(req, res) {
   // db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
-  // db.collection(ENTRIES_COLLECTION).aggregate( [ { $unwind : "$values" } ] ).toArray(function(err, docs) {
-  //   if (err) {
-  //     handleError(res, err.message, "Failed to get entries.");
-  //   } else {
-  //     res.status(200).json(docs);
-  //   }
-  // });
-  db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
+  db.collection(ENTRIES_COLLECTION).aggregate( [ { $unwind : "$values" } ] ).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get entries.");
     } else {
-      var data = [];
-      docs.forEach(function(doc) {
-        var date = doc.timestamp_hour;
-        data.push(date);
-      });
-      res.status(200).json(data);
+      res.status(200).json(docs);
     }
   });
+  // db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
+  //   if (err) {
+  //     handleError(res, err.message, "Failed to get entries.");
+  //   } else {
+  //     var data = [];
+  //     docs.forEach(function(doc) {
+  //       var date = doc.timestamp_hour;
+  //       doc.values.forEach()
+  //       data.push(date);
+  //     });
+  //     res.status(200).json(data);
+  //   }
+  // });
 });
 
 app.post("/api/entries", function(req, res) {
@@ -84,10 +85,16 @@ app.post("/api/entries", function(req, res) {
   date.setSeconds(0);
   date.setMilliseconds(0);
 
+
+  db.my_collection.update(
+    {_id: ObjectId(document_id), my_array.1 : 1 },
+    { $set: { "my_array.$.content" : "NEW content B" } }
+  )
+
   db.collection(ENTRIES_COLLECTION).update(
     {
       timestamp_hour: date,
-      type: "solastat_status"
+      type: "solastat_status",
     },
     {
       $set: {[`values.${minute}.${second}`]: newEntry.status}
