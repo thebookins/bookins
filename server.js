@@ -90,33 +90,42 @@ app.post("/api/entries", function(req, res) {
   }
 
   var date = new Date(newEntry.timestamp);
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
+//  var minute = date.getMinutes();
+//  var second = date.getSeconds();
 
-  date.setMinutes(0);
-  date.setSeconds(0);
-  date.setMilliseconds(0);
+  // date.setMinutes(0);
+  // date.setSeconds(0);
+  // date.setMilliseconds(0);
 
-  db.collection(ENTRIES_COLLECTION).update(
-    {
-      timestamp_hour: date,
-      type: "solastat_status",
-    },
-    {
-      $set: {[`values.${minute}.${second}`]: newEntry.status}
-//      $push: {values[minute][second]: newEntry.status}
-    },
-    {
-      upsert: true
-    },
-    function(err, doc) {
-      if (err) {
-        handleError(res, err.message, "Failed to create new entry.");
-      } else {
-        // TODO: what should we return here?
-        res.status(201).json("hi there");
-//        res.status(201).json(doc.ops[0]);
-      }
-    }
-  );
+db.collection(ENTRIES_COLLECTION).insertOne(newEntry, function(err, doc) {
+  if (err) {
+    handleError(res, err.message, "Failed to create new contact.");
+  } else {
+    res.status(201).json(doc.ops[0]);
+  }
+});
+
+  // the following is an attempt at optimization using a single document per hour
+//   db.collection(ENTRIES_COLLECTION).update(
+//     {
+//       timestamp_hour: date,
+//       type: "solastat_status",
+//     },
+//     {
+//       $set: {[`values.${minute}.${second}`]: newEntry.status}
+// //      $push: {values[minute][second]: newEntry.status}
+//     },
+//     {
+//       upsert: true
+//     },
+//     function(err, doc) {
+//       if (err) {
+//         handleError(res, err.message, "Failed to create new entry.");
+//       } else {
+//         // TODO: what should we return here?
+//         res.status(201).json("hi there");
+// //        res.status(201).json(doc.ops[0]);
+//       }
+//     }
+//   );
 });
