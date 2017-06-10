@@ -52,7 +52,7 @@ app.get("/api/entries", function(req, res) {
   //   }
   // });
   db.collection(ENTRIES_COLLECTION).find({}).forEach(function(doc) {
-    var date = doc.timestamp_hour;
+    var date = new Date(doc.timestamp_hour);
     console.log(date);
     res.status(200).json(date);
   });
