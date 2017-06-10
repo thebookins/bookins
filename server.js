@@ -51,7 +51,7 @@ app.get("/api/entries", function(req, res) {
   //     res.status(200).json(docs);
   //   }
   // });
-  var doc = db.collection(ENTRIES_COLLECTION).find({}).limit(1).sort({$natural:-1});
+  var doc = db.collection(ENTRIES_COLLECTION).find({}).limit(1).sort({$natural:-1})[0];
   var date = doc.timestamp_hour;
   console.log(date);
   res.status(200).json(date);
