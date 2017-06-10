@@ -60,7 +60,7 @@ app.get("/api/entries", function(req, res) {
         var date = doc.timestamp_hour;
         data.push(date);
       });
-      res.status(200).json(docs);
+      res.status(200).json(data);
     }
   });
 });
