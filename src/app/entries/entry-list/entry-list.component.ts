@@ -41,6 +41,7 @@ export class EntryListComponent implements OnInit {
   }
 
   selectEntry(entry: Entry) {
+    console.log('selected ' + entry);
     this.selectedEntry = entry
   }
 
