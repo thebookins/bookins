@@ -51,12 +51,18 @@ app.get("/api/entries", function(req, res) {
   //     res.status(200).json(docs);
   //   }
   // });
-  var data = [];
-  db.collection(ENTRIES_COLLECTION).find({}).forEach(function(doc) {
-    var date = doc.timestamp_hour;
-    data.push(date);
+  db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get entries.");
+    } else {
+      var data = [];
+      docs.forEach(function(doc) {
+        var date = doc.timestamp_hour;
+        data.push(date);
+      });
+      res.status(200).json(docs);
+    }
   });
-  setTimeout(function() {res.status(200).json(data);}, 1000);  
 });
 
 app.post("/api/entries", function(req, res) {
