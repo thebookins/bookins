@@ -45,6 +45,7 @@ export class EntryListComponent implements OnInit {
   }
 
   createNewEntry() {
+    console.log('in new entry');
     var entry: Entry = {
       timestamp: new Date().toJSON(),
       status: {
