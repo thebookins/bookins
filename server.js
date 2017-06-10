@@ -47,14 +47,22 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/api/entries", function(req, res) {
-  // db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
-  db.collection(ENTRIES_COLLECTION).aggregate( [ { $unwind : "$values" } ] ).toArray(function(err, docs) {
+  db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get entries.");
     } else {
       res.status(200).json(docs);
     }
   });
+
+  // example of how we might do it if we used recommended TimeSeries schema
+  // db.collection(ENTRIES_COLLECTION).aggregate( [ { $unwind : "$values" } ] ).toArray(function(err, docs) {
+  //   if (err) {
+  //     handleError(res, err.message, "Failed to get entries.");
+  //   } else {
+  //     res.status(200).json(docs);
+  //   }
+  // });
   // db.collection(ENTRIES_COLLECTION).find({}).toArray(function(err, docs) {
   //   if (err) {
   //     handleError(res, err.message, "Failed to get entries.");
