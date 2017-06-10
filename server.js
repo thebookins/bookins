@@ -85,12 +85,6 @@ app.post("/api/entries", function(req, res) {
   date.setSeconds(0);
   date.setMilliseconds(0);
 
-
-  db.my_collection.update(
-    {_id: ObjectId(document_id), my_array.1 : 1 },
-    { $set: { "my_array.$.content" : "NEW content B" } }
-  )
-
   db.collection(ENTRIES_COLLECTION).update(
     {
       timestamp_hour: date,
