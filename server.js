@@ -47,7 +47,7 @@ app.get("/api/entries", function(req, res) {
     if (err) {
       handleError(res, err.message, "Failed to get entries.");
     } else {
-      res.status(200).json(docs[0]);
+      res.status(200).json(docs);
     }
   });
 });
@@ -57,6 +57,10 @@ app.post("/api/entries", function(req, res) {
 
   if (!newEntry.timestamp) {
     handleError(res, "Invalid user input", "Must provide a timestamp.", 400);
+  }
+
+  if (!newEntry.status) {
+    handleError(res, "Invalid user input", "Must provide a status.", 400);
   }
 
   var date = new Date(newEntry.timestamp);
@@ -73,7 +77,7 @@ app.post("/api/entries", function(req, res) {
       type: "solastat_status"
     },
     {
-      $set: {[`values.${minute}.${second}`]: 20000}
+      $set: {[`values.${minute}.${second}`]: newEntry.status}
     },
     {
       upsert: true
