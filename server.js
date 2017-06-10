@@ -51,12 +51,10 @@ app.get("/api/entries", function(req, res) {
   //     res.status(200).json(docs);
   //   }
   // });
-  db.collection(ENTRIES_COLLECTION).find({}).forEach(function(doc) {
-    var date = new Date(doc.timestamp_hour);
-    console.log(date);
-    res.status(200).json(date);
-  });
-
+  var doc = db.collection(ENTRIES_COLLECTION).find({}).limit(1).sort({$natural:-1});
+  var date = doc.timestamp_hour;
+  console.log(date);
+  res.status(200).json(date);
 });
 
 app.post("/api/entries", function(req, res) {
