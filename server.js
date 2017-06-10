@@ -55,7 +55,7 @@ app.get("/api/entries", function(req, res) {
     var date = doc.timestamp;
     console.log(date);
     res.status(200).json(date);
-  }
+  });
 
 });
 
