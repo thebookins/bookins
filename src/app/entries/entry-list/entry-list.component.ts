@@ -61,6 +61,6 @@ export class EntryListComponent implements OnInit {
   addEntry = (entry: Entry) => {
     this.entries.push(entry);
     this.selectEntry(entry);
-    return this.entry;
+    return this.entries;
   }
 }

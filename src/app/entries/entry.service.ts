@@ -10,7 +10,7 @@ export class EntryService {
     constructor (private http: Http) {}
 
     // get("/api/entries")
-    getEntries(): Promise<Entries[]> {
+    getEntries(): Promise<Entry[]> {
       return this.http.get(this.entriesUrl)
                  .toPromise()
                  .then(response => response.json() as Entry[])
