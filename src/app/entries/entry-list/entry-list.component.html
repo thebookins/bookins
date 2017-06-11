@@ -6,7 +6,7 @@
         *ngFor="let entry of entries"
         (click)="selectEntry(entry)"
         [class.active]="entry === selectedEntry">
-        {{entry.timestamp | date: 'dd/MM/yyyy HH:MM:ss'}}
+        {{entry.timestamp | date: 'dd/MM/yyyy HH:mm:ss'}}
       </li>
     </ul>
     <button class="btn btn-warning" (click)="createNewEntry()">New</button>
