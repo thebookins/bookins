@@ -28,7 +28,9 @@ export class EntryChartComponent implements OnInit {
   constructor(private entryService: EntryService) { }
 
   ngOnInit() {
-    this.data = ['Date', 'Roof', 'Tank', 'Inlet'];
+    this.data = [
+      ['Date', 'Roof', 'Tank', 'Inlet']
+    ];
 
      this.entryService
       .getEntries()
