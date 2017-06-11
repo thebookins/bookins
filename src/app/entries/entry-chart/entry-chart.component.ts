@@ -1,25 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Entry } from '../entry';
+import { EntryService } from '../entry.service';
+
+
 
 @Component({
   selector: 'entry-chart',
   templateUrl: './entry-chart.component.html',
-  styleUrls: ['./entry-chart.component.css']
+  styleUrls: ['./entry-chart.component.css'],
+  providers: [EntryService]
 })
 
-export class EntryChartComponent {
-  public chartData = [
-      ['Date', 'Roof', 'Tank', 'Inlet'],
+export class EntryChartComponent implements OnInit {
+  data: any[]
 
-      [new Date(2016, 3, 16, 7, 30, 45), 89, 23, 15],
-      [new Date(2016, 3, 16, 15, 40, 35), 68, 45, 23],
-      [new Date(2016, 3, 18, 15, 34, 7), 95, 45, 23],
-      [new Date(2016, 3, 19, 8, 34, 7), 98, 67, 12],
-      [new Date(2016, 3, 20), 67, 45, 32],
-      [new Date(2016, 3, 21, 9, 30, 2), 88, 34, 23],
-      [new Date(2016, 3, 22), 78, 45, 12]
-  ];
+  // public chartData = [
+  //     ['Date', 'Roof', 'Tank', 'Inlet'],
+  //
+  //     [new Date(2016, 3, 16, 7, 30, 45), 89, 23, 15],
+  //     [new Date(2016, 3, 16, 15, 40, 35), 68, 45, 23],
+  //     [new Date(2016, 3, 18, 15, 34, 7), 95, 45, 23],
+  //     [new Date(2016, 3, 19, 8, 34, 7), 98, 67, 12],
+  //     [new Date(2016, 3, 20), 67, 45, 32],
+  //     [new Date(2016, 3, 21, 9, 30, 2), 88, 34, 23],
+  //     [new Date(2016, 3, 22), 78, 45, 12]
+  // ];
 
-  public chartOptions = {
+  constructor(private entryService: EntryService) { }
+
+  ngOnInit() {
+     this.entryService
+      .getEntries()
+      .then((entries: Entry[]) => {
+        this.data = entries.map((e) => {
+          return [e.timestamp, e.status.roof, e.status.tank, e.status.inlet];
+        });
+      });
+  }
+
+
+  public options = {
       legend: {
           position: 'bottom'
       },
@@ -46,7 +66,5 @@ export class EntryChartComponent {
         {type: 'area', lineWidth: 0, targetAxisIndex: 1}
       ]
   };
-
-  constructor() { }
 
 }
