@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ChartsModule } from 'ng2-charts';
+import { GoogleChart } from 'angular2-google-chart/directives/angular2-google-chart.directive';
 
 import { AppComponent } from './app.component';
 import { EntryDetailsComponent } from './entries/entry-details/entry-details.component';
@@ -20,7 +20,7 @@ import { EntryChartComponent } from './entries/entry-chart/entry-chart.component
     BrowserModule,
     FormsModule,
     HttpModule,
-    ChartsModule
+    GoogleChart
   ],
   providers: [],
   bootstrap: [AppComponent]
