@@ -1,6 +1,6 @@
 export class Entry {
   _id?: string;
-  timestamp: string;
+  timestamp: Date;
   status: {
     roof: number;
     tank: number;
