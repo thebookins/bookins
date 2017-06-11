@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-entry-chart',
+  selector: 'entry-chart',
   templateUrl: './entry-chart.component.html',
   styleUrls: ['./entry-chart.component.css']
 })
