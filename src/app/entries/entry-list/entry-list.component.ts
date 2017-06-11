@@ -41,12 +41,10 @@ export class EntryListComponent implements OnInit {
   }
 
   selectEntry(entry: Entry) {
-    console.log('selected ' + entry.timestamp);
     this.selectedEntry = entry
   }
 
   createNewEntry() {
-    console.log('in new entry');
     var entry: Entry = {
       timestamp: new Date(),
       status: {
