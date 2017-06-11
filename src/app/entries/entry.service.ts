@@ -14,6 +14,12 @@ export class EntryService {
       return this.http.get(this.entriesUrl)
                  .toPromise()
                  .then(response => response.json() as Entry[])
+                 .then((entries: Entry[]) => {
+                   return entries.map(entry => {
+                     entry.timestamp = new Date(entry.timestamp);
+                     return entry;
+                   });
+                 })
                  .catch(this.handleError);
     }
 
