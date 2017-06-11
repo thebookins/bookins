@@ -14,13 +14,13 @@ import { EntryChartComponent } from './entries/entry-chart/entry-chart.component
     AppComponent,
     EntryDetailsComponent,
     EntryListComponent,
-    EntryChartComponent
+    EntryChartComponent,
+    GoogleChart
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    GoogleChart
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
