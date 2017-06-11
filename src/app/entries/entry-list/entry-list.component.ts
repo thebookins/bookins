@@ -48,7 +48,7 @@ export class EntryListComponent implements OnInit {
   createNewEntry() {
     console.log('in new entry');
     var entry: Entry = {
-      timestamp: new Date().toJSON(),
+      timestamp: new Date(),
       status: {
         roof: 50,
         tank: 50,
@@ -56,7 +56,7 @@ export class EntryListComponent implements OnInit {
       }
     };
 
-    // By default, a newly-created contact will have the selected state.
+    // By default, a newly-created entry will have the selected state.
     this.selectEntry(entry);
   }
 
