@@ -12,11 +12,10 @@ import { EntryService } from '../entry.service';
 })
 
 export class EntryChartComponent implements OnInit {
-  data: any[]
+  public data: any[]
 
   // public chartData = [
-  //     ['Date', 'Roof', 'Tank', 'Inlet'],
-  //
+  //     ['Date', 'Roof', 'Tank', 'Inlet']
   //     [new Date(2016, 3, 16, 7, 30, 45), 89, 23, 15],
   //     [new Date(2016, 3, 16, 15, 40, 35), 68, 45, 23],
   //     [new Date(2016, 3, 18, 15, 34, 7), 95, 45, 23],
@@ -29,12 +28,14 @@ export class EntryChartComponent implements OnInit {
   constructor(private entryService: EntryService) { }
 
   ngOnInit() {
+    this.data.push(['Date', 'Roof', 'Tank', 'Inlet']);
+
      this.entryService
       .getEntries()
       .then((entries: Entry[]) => {
-        this.data = entries.map((e) => {
-          return [e.timestamp, e.status.roof, e.status.tank, e.status.inlet];
-        });
+        for (var e of entries) {
+          this.data.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
+        }
       });
   }
 
