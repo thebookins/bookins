@@ -38,7 +38,7 @@ export class EntryService {
     subscribe() {
       let observable = new Observable(observer => {
         console.log('subscribing');
-        this.socket = io();
+        this.socket = io('http://localhost');
         this.socket.on('state', (data) => {
           console.log('got state');
           observer.next(data);
