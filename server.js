@@ -1,11 +1,16 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
+var io = require('socket.io')(http);
+
 var ObjectID = mongodb.ObjectID;
 
 var ENTRIES_COLLECTION = "entries";
 
 var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
 app.use(bodyParser.json());
 
 // Create link to Angular build directory
@@ -27,7 +32,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   console.log("Database connection ready");
 
   // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
+  server.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
   });
