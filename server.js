@@ -1,8 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
-var io = require('socket.io')(http);
-
 var ObjectID = mongodb.ObjectID;
 
 var ENTRIES_COLLECTION = "entries";
