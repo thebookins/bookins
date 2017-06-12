@@ -113,7 +113,23 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
+  // socket.on('add-state', (message) => {
+  //   io.emit('message', {type:'new-state', text: message});
+  // });
 });
+
+// basic emit
+setTimeout(function() {
+  var state = {
+    timestamp: new Date(),
+    status: {
+      roof: 50,
+      tank: 51,
+      inlet: 52
+    }
+  }
+  io.emit('state', state);
+}, 1000);
 
   // the following is an attempt at optimization using a single document per hour
 //   db.collection(ENTRIES_COLLECTION).update(

@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Entry } from './entry';
 import { Http, Response } from '@angular/http';
+//import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import * as io from 'socket.io-client';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class EntryService {
     private entriesUrl = '/api/entries';
+    private socket;
 
     constructor (private http: Http) {}
 
@@ -29,6 +33,19 @@ export class EntryService {
                  .toPromise()
                  .then(response => response.json() as Entry)
                  .catch(this.handleError);
+    }
+
+    subscribe() {
+      let observable = new Observable(observer => {
+        this.socket = io();
+        this.socket.on('state', (data) => {
+          observer.next(data);
+        });
+        return () => {
+          this.socket.disconnect();
+        };
+      })
+      return observable;
     }
 
     private handleError (error: any) {

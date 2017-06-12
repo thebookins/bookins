@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { EntryDetailsComponent } from './entries/entry-details/entry-details.component';
 import { EntryListComponent } from './entries/entry-list/entry-list.component';
 import { EntryChartComponent } from './entries/entry-chart/entry-chart.component';
+import { EntryLatestComponent } from './entries/entry-latest/entry-latest.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { EntryChartComponent } from './entries/entry-chart/entry-chart.component
     EntryDetailsComponent,
     EntryListComponent,
     EntryChartComponent,
-    GoogleChart
+    GoogleChart,
+    EntryLatestComponent
   ],
   imports: [
     BrowserModule,
