@@ -144,7 +144,7 @@ io.on('connection', function(socket){
   // basic emit
 });
 
-setTimeout(function() {
+setInterval(function() {
   var state = {
     timestamp: new Date(),
     status: {
