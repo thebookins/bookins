@@ -1,4 +1,7 @@
+// TODO: consider changing this to a live status panel with speedo graphs rather than text
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Entry } from '../entry';
 import { EntryService } from '../entry.service';
 
 @Component({
@@ -18,6 +21,7 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.connection = this.entryService.subscribe().subscribe(message => {
+      console.log('got message');
       this.entry = message;
     })
   }
