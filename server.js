@@ -153,5 +153,6 @@ setTimeout(function() {
       inlet: 52
     }
   }
+  console.log('emitting state');
   io.emit('state', state);
 }, 1000);
