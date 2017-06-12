@@ -108,6 +108,13 @@ db.collection(ENTRIES_COLLECTION).insertOne(newEntry, function(err, doc) {
   }
 });
 
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
   // the following is an attempt at optimization using a single document per hour
 //   db.collection(ENTRIES_COLLECTION).update(
 //     {
