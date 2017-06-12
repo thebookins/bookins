@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Entry } from './entry';
 import { Http, Response } from '@angular/http';
-//import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import 'rxjs/add/operator/toPromise';
