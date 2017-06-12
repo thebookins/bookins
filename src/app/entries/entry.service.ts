@@ -37,6 +37,7 @@ export class EntryService {
 
     subscribe() {
       let observable = new Observable(observer => {
+        console.log('subscribing');
         this.socket = io();
         this.socket.on('state', (data) => {
           console.log('got state');
