@@ -139,7 +139,15 @@ io.on('connection', function(socket){
     console.log('user disconnected');
   });
   socket.on('state', (state) => {
-    io.emit('state', state);
+    var entry = {
+      timestamp: state.timestamp,
+      status: {
+        roof: state.roof,
+        tank: state.tank,
+        inlet: state.inlet
+      }
+    }
+    io.emit('state', entry);
   });
 });
 
