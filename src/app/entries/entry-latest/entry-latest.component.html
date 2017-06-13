@@ -20,3 +20,5 @@
     <button class="btn btn-primary" *ngIf="!entry._id" (click)="createEntry(entry)">Create</button>
   </form>
 </div>
+
+<div id="gauge_chart" [chartData]="gauge_ChartData" [chartOptions]= "gauge_ChartOptions" chartType="Gauge" GoogleChart></div>
