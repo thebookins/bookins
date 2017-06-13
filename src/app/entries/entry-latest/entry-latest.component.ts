@@ -17,11 +17,14 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
   entry;
   connection;
 
-  public gauge_ChartData = [
-          ['Label', 'Value'],
-          ['Systolic', 120],
-          ['Diastolic', 80]];
-  public gauge_ChartOptions = {
+  public chartData = [
+    ['Label', 'Value'],
+    ['Roof', 120],
+    ['Tank', 80],
+    ['Inlet', 40]
+  ];
+
+  public chartOptions = {
           width: 400, height: 120,
           redFrom: 90, redTo: 100,
           yellowFrom: 75, yellowTo: 90,
@@ -34,6 +37,9 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
     this.connection = this.entryService.subscribe().subscribe(message => {
       console.log('got message');
       this.entry = message;
+      this.chartData[1][1] = this.entry.status.roof;
+      this.chartData[2][1] = this.entry.status.tank;
+      this.chartData[3][1] = this.entry.status.inlet;
     })
   }
 
