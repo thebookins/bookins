@@ -16,13 +16,7 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
 
   entry;
   connection;
-
-  public chartData = [
-    ['Label', 'Value'],
-    ['Roof', 120],
-    ['Tank', 80],
-    ['Inlet', 40]
-  ];
+  chartData;
 
   public chartOptions = {
           width: 400, height: 120,
@@ -37,9 +31,12 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
     this.connection = this.entryService.subscribe().subscribe(message => {
       console.log('got message');
       this.entry = message;
-      this.chartData[1][1] = this.entry.status.roof;
-      this.chartData[2][1] = this.entry.status.tank;
-      this.chartData[3][1] = this.entry.status.inlet;
+      this.chartData = [
+        ['Label', 'Value'],
+        ['Roof', this.entry.status.roof],
+        ['Tank', this.entry.status.tank],
+        ['Inlet', this.entry.status.inlet]
+      ];
     })
   }
 
