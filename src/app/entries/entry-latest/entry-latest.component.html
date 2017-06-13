@@ -4,8 +4,9 @@
   </div>
 </div>
 <div *ngIf="entry" class="row">
-  <form class="col-md-12">
-    <div class="form-group">
+  <div class="col-md-12">
+    <div id="gauge_chart" [chartData]="chartData" [chartOptions]= "chartOptions" chartType="Gauge" GoogleChart></div>
+    <!-- <div class="form-group">
       <label for="entry-roof">Roof</label>
       <input class="form-control" name="entry-roof" [(ngModel)]="entry.status.roof" placeholder=50/>
     </div>
@@ -16,8 +17,6 @@
     <div class="form-group">
       <label for="entry-inlet">Inlet</label>
       <input class="form-control" name="entry-inlet" [(ngModel)]="entry.status.inlet" placeholder=50/>
-    </div>
-  </form>
-</div>
-
-<div id="gauge_chart" [chartData]="chartData" [chartOptions]= "chartOptions" chartType="Gauge" GoogleChart></div>
+    </div> -->
+  </div>
+</div> -->
