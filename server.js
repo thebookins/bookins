@@ -138,22 +138,21 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  // this will enable re-transmittion of state messages received from the uploader
-  // socket.on('add-state', (message) => {
-  //   io.emit('message', {type:'new-state', text: message});
-  // });
+  socket.on('state', (state) => {
+    io.emit('state', state);
+  });
 });
 
 // this is a temporary hack to simulate an uploader pushing data
-setInterval(function() {
-  var state = {
-    timestamp: new Date(),
-    status: {
-      roof: 50,
-      tank: 51,
-      inlet: 52
-    }
-  }
-  console.log('emitting state');
-  io.emit('state', state);
-}, 1000);
+// setInterval(function() {
+//   var state = {
+//     timestamp: new Date(),
+//     status: {
+//       roof: 50,
+//       tank: 51,
+//       inlet: 52
+//     }
+//   }
+//   console.log('emitting state');
+//   io.emit('state', state);
+// }, 1000);
