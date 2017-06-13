@@ -17,6 +17,17 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
   entry;
   connection;
 
+  public gauge_ChartData = [
+          ['Label', 'Value'],
+          ['Systolic', 120],
+          ['Diastolic', 80]];
+  public gauge_ChartOptions = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom: 75, yellowTo: 90,
+          minorTicks: 5
+      };
+
   constructor(private entryService: EntryService) { }
 
   ngOnInit() {
