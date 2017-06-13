@@ -92,7 +92,8 @@ app.post("/api/entries", function(req, res) {
     handleError(res, "Invalid user input", "Must provide a status.", 400);
   }
 
-  var date = new Date(newEntry.timestamp);
+  // to make sure that the timestamp is stored in MongoDB as a date, not as a string
+  newEntry.timestamp = new Date(newEntry.timestamp);
 //  var minute = date.getMinutes();
 //  var second = date.getSeconds();
 
