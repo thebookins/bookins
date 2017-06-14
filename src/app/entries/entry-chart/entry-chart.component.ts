@@ -57,7 +57,8 @@ export class EntryChartComponent implements OnInit {
           {color: 'blue', targetAxisIndex: 0},
           {type: 'area', lineWidth: 0, targetAxisIndex: 1},
           {type: 'area', lineWidth: 0, targetAxisIndex: 1}
-        ]
+        ],
+        height: 500
     };
 
 
@@ -67,7 +68,7 @@ export class EntryChartComponent implements OnInit {
     .then((entries: Entry[]) => {
       tmp.push(['Date', 'Roof', 'Tank', 'Inlet']);
       for (var e of entries) {
-        tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
+        tmp.push([e.timestamp.toString(), e.status.roof, e.status.tank, e.status.inlet]);
       }
       if (entries.length > 0) {
         this.data = tmp;
