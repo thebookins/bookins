@@ -37,9 +37,18 @@ export class EntryChartComponent implements OnInit {
         tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
       }
     });
-    if (tmp.length > 1) {
-      this.data = tmp;
-    }
+//    if (tmp.length > 1) {
+      this.data =  [
+            ['Date', 'Roof', 'Tank', 'Inlet']
+            [new Date(2016, 3, 16, 7, 30, 45), 89, 23, 15],
+            [new Date(2016, 3, 16, 15, 40, 35), 68, 45, 23],
+            [new Date(2016, 3, 18, 15, 34, 7), 95, 45, 23],
+            [new Date(2016, 3, 19, 8, 34, 7), 98, 67, 12],
+            [new Date(2016, 3, 20), 67, 45, 32],
+            [new Date(2016, 3, 21, 9, 30, 2), 88, 34, 23],
+            [new Date(2016, 3, 22), 78, 45, 12]
+        ];
+//    }
   }
 
 
