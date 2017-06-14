@@ -13,6 +13,7 @@ import { EntryService } from '../entry.service';
 
 export class EntryChartComponent implements OnInit {
   public data: any[]
+  public options
 
   // public chartData = [
   //     ['Date', 'Roof', 'Tank', 'Inlet']
@@ -28,6 +29,38 @@ export class EntryChartComponent implements OnInit {
   constructor(private entryService: EntryService) { }
 
   ngOnInit() {
+    var now = new Date();
+    var minVal = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+    var maxVal = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+
+    this.options = {
+        legend: {
+            position: 'bottom'
+        },
+        title: "Solastat data",
+        hAxis: {title: 'time', minValue: minVal, maxValue: maxVal},
+        vAxes: [{
+          title: 'temperature (\u2103)',
+          minValue: 0,
+          maxValue: 100
+        }, {
+          minValue: 0,
+          maxValue: 1
+        }],
+        interpolateNulls: false,
+        lineWidth: 1,
+        pointSize: 0,
+        seriesType: 'line',
+        series: [
+          {color: 'red', targetAxisIndex: 0},
+          {color: 'green', targetAxisIndex: 0},
+          {color: 'blue', targetAxisIndex: 0},
+          {type: 'area', lineWidth: 0, targetAxisIndex: 1},
+          {type: 'area', lineWidth: 0, targetAxisIndex: 1}
+        ]
+    };
+
+
     var tmp = [];
     this.entryService
     .getEntries()
@@ -41,34 +74,4 @@ export class EntryChartComponent implements OnInit {
       }
     });
   }
-
-
-  public options = {
-      legend: {
-          position: 'bottom'
-      },
-      title: "Solastat data",
-      // hAxis: {title: 'time (s)', minValue: minVal, maxValue: maxVal},
-      hAxis: {title: 'time (s)'},
-      vAxes: [{
-        title: 'temperature (\u2103)',
-        minValue: 0,
-        maxValue: 100
-      }, {
-        minValue: 0,
-        maxValue: 1
-      }],
-      interpolateNulls: false,
-      lineWidth: 1,
-      pointSize: 0,
-      seriesType: 'line',
-      series: [
-        {color: 'red', targetAxisIndex: 0},
-        {color: 'green', targetAxisIndex: 0},
-        {color: 'blue', targetAxisIndex: 0},
-        {type: 'area', lineWidth: 0, targetAxisIndex: 1},
-        {type: 'area', lineWidth: 0, targetAxisIndex: 1}
-      ]
-  };
-
 }
