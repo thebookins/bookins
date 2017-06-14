@@ -28,17 +28,16 @@ export class EntryChartComponent implements OnInit {
   constructor(private entryService: EntryService) { }
 
   ngOnInit() {
-    this.data = [
-      ['Date', 'Roof', 'Tank', 'Inlet']
-    ];
-
-     this.entryService
-      .getEntries()
-      .then((entries: Entry[]) => {
-        for (var e of entries) {
-          this.data.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
-        }
-      });
+    var tmp: any[]
+    this.entryService
+    .getEntries()
+    .then((entries: Entry[]) => {
+      tmp.push(['Date', 'Roof', 'Tank', 'Inlet']);
+      for (var e of entries) {
+        tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
+      }
+    });
+    this.data = tmp;
   }
 
 
