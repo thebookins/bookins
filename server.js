@@ -50,8 +50,10 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/api/entries", function(req, res) {
+  var today = new Date();
+  var lastMidnight = today.setHours(0,0,0,0);
   db.collection(ENTRIES_COLLECTION).find({
-    timestamp: {'$gte': new Date()}
+    timestamp: {'$gte': lastMidnight}
   }).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get entries.");
