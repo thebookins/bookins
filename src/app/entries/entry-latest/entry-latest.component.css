@@ -1,0 +1,2 @@
+/* override the default display: none to preserve space */
+[hidden] { visibility: hidden !important;}
