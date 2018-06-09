@@ -17,6 +17,7 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
   entry;
   connection;
   chartData;
+  current: boolean = false;
 
   public chartOptions = {
           width: 400, height: 120,
@@ -30,6 +31,9 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.connection = this.entryService.subscribe().subscribe(message => {
       console.log('got message');
+      current = true;
+      // TODO: should this be injected?
+      setTimeout(() => {current = false}, 500);
       this.entry = message;
       this.chartData = [
         ['Label', 'Value'],
