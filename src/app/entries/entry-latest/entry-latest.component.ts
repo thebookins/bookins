@@ -31,9 +31,9 @@ export class EntryLatestComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.connection = this.entryService.subscribe().subscribe(message => {
       console.log('got message');
-      current = true;
+      this.current = true;
       // TODO: should this be injected?
-      setTimeout(() => {current = false}, 500);
+      setTimeout(() => {this.current = false}, 500);
       this.entry = message;
       this.chartData = [
         ['Label', 'Value'],
