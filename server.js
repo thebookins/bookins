@@ -50,8 +50,11 @@ function handleError(res, reason, message, code) {
  */
 
  app.get("/api/entries", function(req, res) {
-   var start = new Date();
-   start.setHours(0,0,0,0);
+   var start = req.query.start;
+   if (!start) {
+     start = new Date(); 
+     start.setHours(0,0,0,0);
+   }
    db.collection(ENTRIES_COLLECTION).find({
      timestamp: {'$gte': start}
    }).toArray(function(err, docs) {
