@@ -14,7 +14,6 @@ import { EntryLatestComponent } from './entries/entry-latest/entry-latest.compon
   declarations: [
     AppComponent,
     EntryDetailsComponent,
-    EntryListComponent,
     EntryChartComponent,
     GoogleChart,
     EntryLatestComponent
