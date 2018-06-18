@@ -49,9 +49,23 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new entry
  */
 
-app.get("/api/entries", function(req, res) {
-  var start = new Date();
-  start.setHours(0,0,0,0);
+ app.get("/api/entries", function(req, res) {
+   var start = new Date();
+   start.setHours(0,0,0,0);
+   db.collection(ENTRIES_COLLECTION).find({
+     timestamp: {'$gte': start}
+   }).toArray(function(err, docs) {
+     if (err) {
+       handleError(res, err.message, "Failed to get entries.");
+     } else {
+       res.status(200).json(docs);
+     }
+   });
+
+app.get("/api/entries/:start", function(req, res) {
+  // var start = new Date();
+  // start.setHours(0,0,0,0);
+  var start = request.params.start
   db.collection(ENTRIES_COLLECTION).find({
     timestamp: {'$gte': start}
   }).toArray(function(err, docs) {
