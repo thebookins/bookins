@@ -50,8 +50,10 @@ function handleError(res, reason, message, code) {
  */
 
  app.get("/api/entries", function(req, res) {
-   var start = new Date(req.query.start);
-   if (!start) {
+   var start;
+   if (req.query.start) {
+     start = new Date(req.query.start);
+   } else {
      start = new Date();
      start.setHours(0,0,0,0);
    }
