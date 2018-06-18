@@ -6,7 +6,6 @@ import { GoogleChart } from 'angular2-google-chart/directives/angular2-google-ch
 
 import { AppComponent } from './app.component';
 import { EntryDetailsComponent } from './entries/entry-details/entry-details.component';
-import { EntryListComponent } from './entries/entry-list/entry-list.component';
 import { EntryChartComponent } from './entries/entry-chart/entry-chart.component';
 import { EntryLatestComponent } from './entries/entry-latest/entry-latest.component';
 
