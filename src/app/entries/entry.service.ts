@@ -26,8 +26,6 @@ export class EntryService {
                  .catch(this.handleError);
     }
 
-    getEntries()
-
     // post("/api/entries")
     createEntry(newEntry: Entry): Promise<Entry> {
       return this.http.post(this.entriesUrl, newEntry)
