@@ -13,8 +13,8 @@ export class EntryService {
     constructor (private http: Http) {}
 
     // get("/api/entries")
-    getEntries(): Promise<Entry[]> {
-      return this.http.get(this.entriesUrl)
+    getEntries(start: Date): Promise<Entry[]> {
+      return this.http.get(this.entriesUrl, {params: {start: start.toUTCString()}})
                  .toPromise()
                  .then(response => response.json() as Entry[])
                  .then((entries: Entry[]) => {
