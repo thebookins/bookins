@@ -5,5 +5,7 @@ export class Entry {
     roof: number;
     tank: number;
     inlet: number;
+    solar: number;
+    backup: number;
   }
 }
