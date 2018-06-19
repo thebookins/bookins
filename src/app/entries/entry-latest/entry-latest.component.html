@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-md-12">
     <h2>Status</h2>
+    <p>Solar: {{ entry.status.solar }}</p>
+    <p>Backup: {{ entry.status.backup }}</p>
     <span [style.visibility]="current ? 'visible' : 'hidden'">Connected</span>
   </div>
 </div>
