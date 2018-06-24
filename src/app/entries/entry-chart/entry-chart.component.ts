@@ -66,9 +66,9 @@ export class EntryChartComponent implements OnInit {
     this.entryService
     .getEntries(minVal)
     .then((entries: Entry[]) => {
-      tmp.push(['Date', 'Roof', 'Tank', 'Inlet']);
+      tmp.push(['Date', 'Roof', 'Tank', 'Inlet', 'Solar', 'Backup']);
       for (var e of entries) {
-        tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
+        tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet, e.status.solar, e.status.backup]);
       }
       if (entries.length > 0) {
         this.data = tmp;
