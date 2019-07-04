@@ -23,7 +23,7 @@ export class EntryService {
       }}).toPromise()
                  .then(response => response.json().map(item => {
                    return {
-                     timestamp: item[0]
+                     timestamp: item[0],
                      status: {
                        roof: item[1],
                        tank: 100,
