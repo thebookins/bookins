@@ -20,16 +20,6 @@ var host = process.env.HOST || '0.0.0.0';
 // Listen on a specific port via the PORT environment variable
 var port = process.env.PORT || 8080;
 
-var cors_proxy = require('cors-anywhere');
-cors_proxy.createServer({
-    originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
-}).listen(port, host, function() {
-    console.log('Running CORS Anywhere on ' + host + ':' + port);
-});
-
-
 
 // // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 // var db;
@@ -45,11 +35,11 @@ cors_proxy.createServer({
 //   db = database;
 //   console.log("Database connection ready");
 //
-//   // Initialize the app.
-//   server.listen(process.env.PORT || 8080, function () {
-//     var port = server.address().port;
-//     console.log("App now running on port", port);
-//   });
+  // Initialize the app.
+  server.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
 // });
 
 // ENTRIES API ROUTES BELOW
