@@ -21,7 +21,19 @@ export class EntryService {
         end: 1562218344836,
         interval: 60
       }}).toPromise()
-                 .then(response => response.json() as Entry[])
+                 .then(response => response.json().map(item => {
+                   return {
+                     timestamp: item[0]
+                     status: {
+                       roof: item[1],
+                       tank: 100,
+                       inlet: 100,
+                       solar: 0,
+                       backup:0
+                     }
+                   }
+                 }))
+                 .then(json => json as Entry[])
                  .then((entries: Entry[]) => {
                    return entries.map(entry => {
                      entry.timestamp = new Date(entry.timestamp);
