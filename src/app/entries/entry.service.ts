@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class EntryService {
-    private entriesUrl = 'http://emoncms.org/feed/data.json'
+    private entriesUrl = 'https://emoncms.org/feed/data.json'
     private socket;
 
     constructor (private http: Http) {}
