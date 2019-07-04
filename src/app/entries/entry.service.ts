@@ -7,15 +7,19 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class EntryService {
-    private entriesUrl = '/api/entries';
+    private entriesUrl = 'http://emoncms.org/feed/data.json'
     private socket;
 
     constructor (private http: Http) {}
 
     // get("/api/entries")
     getEntries(start: Date): Promise<Entry[]> {
-      return this.http.get(this.entriesUrl, {params: {start: start.toUTCString()}})
-                 .toPromise()
+      return this.http.get(this.entriesUrl, {params: {
+        id: 392814,
+        start: 1562131976903,
+        end: 1562218344836,
+        interval: 60
+      }}).toPromise()
                  .then(response => response.json() as Entry[])
                  .then((entries: Entry[]) => {
                    return entries.map(entry => {
@@ -23,14 +27,6 @@ export class EntryService {
                      return entry;
                    });
                  })
-                 .catch(this.handleError);
-    }
-
-    // post("/api/entries")
-    createEntry(newEntry: Entry): Promise<Entry> {
-      return this.http.post(this.entriesUrl, newEntry)
-                 .toPromise()
-                 .then(response => response.json() as Entry)
                  .catch(this.handleError);
     }
 
