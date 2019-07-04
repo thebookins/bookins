@@ -17,10 +17,10 @@ export class EntryDetailsComponent {
 
   constructor (private entryService: EntryService) {}
 
-  createEntry(entry: Entry) {
-    this.entryService.createEntry(entry).then((newEntry: Entry) => {
-      this.createHandler(newEntry);
-    });
-  }
+  // createEntry(entry: Entry) {
+  //   this.entryService.createEntry(entry).then((newEntry: Entry) => {
+  //     this.createHandler(newEntry);
+  //   });
+  // }
 
 }
