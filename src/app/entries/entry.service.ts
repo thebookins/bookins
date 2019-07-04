@@ -17,8 +17,8 @@ export class EntryService {
       return this.http.get(this.entriesUrl, {params: {
         apikey: '3bc0cbb9b69e857a73387efc8b58c899',
         id: 392814,
-        start: 1562131976903,
-        end: 1562218344836,
+        start: start,
+        end: start + 24 * 60 * 60 * 1000,
         interval: 60
       }}).toPromise()
                  .then(response => response.json().map(item => {
