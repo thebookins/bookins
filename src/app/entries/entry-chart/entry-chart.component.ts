@@ -12,7 +12,12 @@ declare var google:any;
 })
 
 export class EntryChartComponent implements OnInit {
+  public roof: any[]
+  public tank: any[]
+  public inlet: any[]
+
   public data: any[]
+
   public options
 
   // public chartData = [
@@ -63,19 +68,34 @@ export class EntryChartComponent implements OnInit {
 
 
     var tmp = [];
+
+    // roof
     this.entryService
-    .getEntries(minVal)
+    .getEntries(minVal, 392814)
     .then((entries: Entry[]) => {
-      // tmp.push(['Date', 'Roof', 'Tank', 'Inlet']);
       tmp.push(['Date', 'Roof']);
       for (var e of entries) {
-        // tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
         tmp.push([e.timestamp, e.value]);
       }
       if (entries.length > 0) {
-        this.data = google.visualization.arrayToDataTable(tmp);
+        this.roof = google.visualization.arrayToDataTable(tmp);
       }
     });
+
+    // tank
+    this.entryService
+    .getEntries(minVal, 392815)
+    .then((entries: Entry[]) => {
+      tmp.push(['Date', 'Tank']);
+      for (var e of entries) {
+        tmp.push([e.timestamp, e.value]);
+      }
+      if (entries.length > 0) {
+        this.tank = google.visualization.arrayToDataTable(tmp);
+      }
+    });
+
+    this.data = google.visualization.data.join(roof, tank, 'full', [[0, 0]], [1], [1])
   }
 }
 //
