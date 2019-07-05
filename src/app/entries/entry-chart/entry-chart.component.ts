@@ -69,7 +69,7 @@ export class EntryChartComponent implements OnInit {
 
     // roof
     this.entryService
-    .getEntries(minVal, 392814)
+    .getEntries(minVal, 392815)
     .then((entries: Entry[]) => {
       var tmp = [];
       tmp.push(['Date', 'Roof']);
@@ -97,7 +97,7 @@ export class EntryChartComponent implements OnInit {
     })
     .then(() => {
 //      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
-      this.data = this.tank
+      this.data = this.roof
     });
   }
 }
