@@ -81,7 +81,7 @@ export class EntryChartComponent implements OnInit {
         this.roof = google.visualization.arrayToDataTable(tmp);
       }
     })
-    .then(() {
+    .then(() => {
       // tank
       this.entryService
       .getEntries(minVal, 392815)
@@ -96,7 +96,7 @@ export class EntryChartComponent implements OnInit {
       })
     })
     .then(() => {
-      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])  
+      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
     })
   }
 }
