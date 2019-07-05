@@ -73,8 +73,54 @@ export class EntryChartComponent implements OnInit {
         tmp.push([e.timestamp, e.value]);
       }
       if (entries.length > 0) {
-        this.data = tmp;
+        this.data = google.visualization.arrayToDataTable(tmp);
       }
     });
   }
 }
+//
+//
+//
+// function drawChart() {
+//     var data1 = new google.visualization.DataTable();
+//     data1.addColumn('number', 'X');
+//     data1.addColumn('number', 'Y 1');
+//
+//     data1.addRows([
+//         [1, 3],
+//         [2, 6],
+//         [5, 5],
+//         [6, 8],
+//         [8, 2],
+//         [9, 5],
+//         [10, 5],
+//         [12, 4],
+//         [13, 8]
+//     ]);
+//
+//     var data2 = new google.visualization.DataTable();
+//     data2.addColumn('number', 'X');
+//     data2.addColumn('number', 'Y 2');
+//
+//     data2.addRows([
+//         [1, 5],
+//         [3, 1],
+//         [4, 3],
+//         [5, 9],
+//         [6, 4],
+//         [8, 5],
+//         [9, 7],
+//         [11, 7],
+//         [16, 3]
+//     ]);
+//
+//     var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
+//
+//     var chart = new google.visualization.LineChart(document.querySelector('#chart_div'));
+//     chart.draw(joinedData, {
+//         height: 300,
+//         width: 600,
+//         interpolateNulls: true
+//     });
+// }
+// google.load('visualization', '1', {packages:['corechart'], callback: drawChart});
