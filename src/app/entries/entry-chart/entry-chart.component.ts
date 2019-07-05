@@ -96,6 +96,7 @@ export class EntryChartComponent implements OnInit {
       })
     })
     .then(() => {
+      console.log(this.roof)
       this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
       console.log(this.data)
     })
