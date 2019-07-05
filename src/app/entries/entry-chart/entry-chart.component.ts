@@ -66,10 +66,8 @@ export class EntryChartComponent implements OnInit {
         height: 500
     };
 
-
     // roof
-    this.entryService
-    .getEntries(minVal, 392815)
+    this.entryService.getEntries(minVal, 392814)
     .then((entries: Entry[]) => {
       var tmp = [];
       tmp.push(['Date', 'Roof']);
@@ -80,24 +78,20 @@ export class EntryChartComponent implements OnInit {
         this.roof = google.visualization.arrayToDataTable(tmp);
       }
     })
-    .then(() => {
-      // tank
-      this.entryService
-      .getEntries(minVal, 392815)
-      .then((entries: Entry[]) => {
-        var tmp = [];
-        tmp.push(['Date', 'Tank']);
-        for (var e of entries) {
-          tmp.push([e.timestamp, e.value]);
-        }
-        if (entries.length > 0) {
-          this.tank = google.visualization.arrayToDataTable(tmp);
-        }
-      })
+    .then(() => this.entryService.getEntries(minVal, 392815))
+    .then((entries: Entry[]) => {
+      var tmp = [];
+      tmp.push(['Date', 'Tank']);
+      for (var e of entries) {
+        tmp.push([e.timestamp, e.value]);
+      }
+      if (entries.length > 0) {
+        this.tank = google.visualization.arrayToDataTable(tmp);
+      }
     })
     .then(() => {
-//      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
-      this.data = this.roof
+     this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
+      // this.data = this.roof
     });
   }
 }
