@@ -67,12 +67,11 @@ export class EntryChartComponent implements OnInit {
     };
 
 
-    var tmp = [];
-
     // roof
     this.entryService
     .getEntries(minVal, 392814)
     .then((entries: Entry[]) => {
+      var tmp = [];
       tmp.push(['Date', 'Roof']);
       for (var e of entries) {
         tmp.push([e.timestamp, e.value]);
@@ -86,6 +85,7 @@ export class EntryChartComponent implements OnInit {
       this.entryService
       .getEntries(minVal, 392815)
       .then((entries: Entry[]) => {
+        var tmp = [];
         tmp.push(['Date', 'Tank']);
         for (var e of entries) {
           tmp.push([e.timestamp, e.value]);
