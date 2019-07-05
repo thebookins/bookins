@@ -95,7 +95,7 @@ export class EntryChartComponent implements OnInit {
       }
     });
 
-    this.data = google.visualization.data.join(roof, tank, 'full', [[0, 0]], [1], [1])
+    this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])  
   }
 }
 //

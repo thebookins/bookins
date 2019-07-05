@@ -13,10 +13,10 @@ export class EntryService {
     constructor (private http: Http) {}
 
     // get("/api/entries")
-    getEntries(start: Date): Promise<Entry[]> {
+    getEntries(start: Date, id: number): Promise<Entry[]> {
       return this.http.get(this.entriesUrl, {params: {
         apikey: '3bc0cbb9b69e857a73387efc8b58c899',
-        id: 392814,
+        id,
         start: start.getTime(),
         end: start.getTime() + 24 * 60 * 60 * 1000,
         interval: 60
