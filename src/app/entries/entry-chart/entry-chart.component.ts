@@ -66,6 +66,7 @@ export class EntryChartComponent implements OnInit {
         height: 500
     };
 
+    // TODO: these can be looped
     // roof
     this.entryService.getEntries(minVal, 392814)
     .then((entries: Entry[]) => {
@@ -89,8 +90,20 @@ export class EntryChartComponent implements OnInit {
         this.tank = google.visualization.arrayToDataTable(tmp);
       }
     })
+    .then(() => this.entryService.getEntries(minVal, 392816))
+    .then((entries: Entry[]) => {
+      var tmp = [];
+      tmp.push(['Date', 'Inlet']);
+      for (var e of entries) {
+        tmp.push([e.timestamp, e.value]);
+      }
+      if (entries.length > 0) {
+        this.inlet = google.visualization.arrayToDataTable(tmp);
+      }
+    })
     .then(() => {
      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
+     this.data = google.visualization.data.join(this.data, this.inlet, 'full', [[0, 0]], [1, 2], [1])
       // this.data = this.roof
     });
   }
