@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Entry } from '../entry';
 import { EntryService } from '../entry.service';
 
-
+declare var google:any;
 
 @Component({
   selector: 'entry-chart',
