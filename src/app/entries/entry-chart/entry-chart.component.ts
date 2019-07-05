@@ -58,7 +58,7 @@ export class EntryChartComponent implements OnInit {
         seriesType: 'line',
         series: [
           {color: 'red', targetAxisIndex: 0},
-          // {color: 'green', targetAxisIndex: 0},
+          {color: 'green', targetAxisIndex: 0},
           // {color: 'blue', targetAxisIndex: 0},
           // {type: 'area', lineWidth: 0, targetAxisIndex: 1},
           // {type: 'area', lineWidth: 0, targetAxisIndex: 1}
@@ -96,8 +96,8 @@ export class EntryChartComponent implements OnInit {
       })
     })
     .then(() => {
-      // this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
-      this.data = this.roof
+      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])
+      console.log(this.data)
     })
   }
 }
