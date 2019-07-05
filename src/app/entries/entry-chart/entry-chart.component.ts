@@ -53,10 +53,10 @@ export class EntryChartComponent implements OnInit {
         seriesType: 'line',
         series: [
           {color: 'red', targetAxisIndex: 0},
-          {color: 'green', targetAxisIndex: 0},
-          {color: 'blue', targetAxisIndex: 0},
-          {type: 'area', lineWidth: 0, targetAxisIndex: 1},
-          {type: 'area', lineWidth: 0, targetAxisIndex: 1}
+          // {color: 'green', targetAxisIndex: 0},
+          // {color: 'blue', targetAxisIndex: 0},
+          // {type: 'area', lineWidth: 0, targetAxisIndex: 1},
+          // {type: 'area', lineWidth: 0, targetAxisIndex: 1}
         ],
         height: 500
     };
@@ -66,9 +66,11 @@ export class EntryChartComponent implements OnInit {
     this.entryService
     .getEntries(minVal)
     .then((entries: Entry[]) => {
-      tmp.push(['Date', 'Roof', 'Tank', 'Inlet']);
+      // tmp.push(['Date', 'Roof', 'Tank', 'Inlet']);
+      tmp.push(['Date', 'Roof']);
       for (var e of entries) {
-        tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
+        // tmp.push([e.timestamp, e.status.roof, e.status.tank, e.status.inlet]);
+        tmp.push([e.timestamp, e.value]);
       }
       if (entries.length > 0) {
         this.data = tmp;

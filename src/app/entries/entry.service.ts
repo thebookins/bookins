@@ -24,13 +24,14 @@ export class EntryService {
                  .then(response => response.json().map(item => {
                    return {
                      timestamp: item[0],
-                     status: {
-                       roof: item[1],
-                       tank: 100,
-                       inlet: 100,
-                       solar: 0,
-                       backup:0
-                     }
+                     value: item[1]
+                     // status: {
+                     //   roof: item[1],
+                     //   tank: 100,
+                     //   inlet: 100,
+                     //   solar: 0,
+                     //   backup:0
+                     // }
                    }
                  }))
                  .then(json => json as Entry[])
