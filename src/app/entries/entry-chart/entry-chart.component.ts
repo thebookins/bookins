@@ -80,22 +80,24 @@ export class EntryChartComponent implements OnInit {
       if (entries.length > 0) {
         this.roof = google.visualization.arrayToDataTable(tmp);
       }
-    });
-
-    // tank
-    this.entryService
-    .getEntries(minVal, 392815)
-    .then((entries: Entry[]) => {
-      tmp.push(['Date', 'Tank']);
-      for (var e of entries) {
-        tmp.push([e.timestamp, e.value]);
-      }
-      if (entries.length > 0) {
-        this.tank = google.visualization.arrayToDataTable(tmp);
-      }
-    });
-
-    this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])  
+    })
+    .then(() {
+      // tank
+      this.entryService
+      .getEntries(minVal, 392815)
+      .then((entries: Entry[]) => {
+        tmp.push(['Date', 'Tank']);
+        for (var e of entries) {
+          tmp.push([e.timestamp, e.value]);
+        }
+        if (entries.length > 0) {
+          this.tank = google.visualization.arrayToDataTable(tmp);
+        }
+      })
+    })
+    .then(() => {
+      this.data = google.visualization.data.join(this.roof, this.tank, 'full', [[0, 0]], [1], [1])  
+    })
   }
 }
 //
