@@ -15,7 +15,7 @@ export class EntryService {
     // get("/api/entries")
     getEntries(start: Date, id: number): Promise<Entry[]> {
       return this.http.get(this.entriesUrl, {params: {
-        apikey: '3bc0cbb9b69e857a73387efc8b58c899',
+        apikey: 'b8dbcbcc505ff6e983133f4c3e4296ce',
         id,
         start: start.getTime(),
         end: start.getTime() + 24 * 60 * 60 * 1000,
